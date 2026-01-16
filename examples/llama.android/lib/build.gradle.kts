@@ -1,19 +1,21 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+//    id("com.android.application") version "8.6.1"
+//    id("org.jetbrains.kotlin.android") version "2.3.0"
 }
 
 android {
     namespace = "com.arm.aichat"
-    compileSdk = 36
+    compileSdk = 34
 
     ndkVersion = "29.0.13113456"
 
     defaultConfig {
-        minSdk = 33
+        minSdk = 31
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+//        consumerProguardFiles("consumer-rules.pro")
 
         ndk {
              abiFilters += listOf("arm64-v8a", "x86_64")
@@ -34,9 +36,9 @@ android {
                 arguments += "-DGGML_LLAMAFILE=OFF"
             }
         }
-        aarMetadata {
-            minCompileSdk = 35
-        }
+//        aarMetadata {
+//            minCompileSdk = 35
+//        }
     }
     externalNativeBuild {
         cmake {
@@ -75,4 +77,6 @@ dependencies {
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
 }
